@@ -568,7 +568,6 @@ function changeSettingsRU() {
     setHeader.innerHTML = 'НАСТРОЙКИ';
     langHeader.innerHTML = 'Язык';
     sourceHeader.innerHTML = 'Источник фонового изображения';
-    // selectSrc.innerHTML = 'Выбрать';
     tagHeader.innerHTML = 'Фон по тегу';
     hideShowHeader.innerHTML = 'Скрыть/показать';
     timeHeader.innerHTML = 'Время';
@@ -604,7 +603,6 @@ function changeSettingsEN() {
     setHeader.innerHTML = 'SETTINGS';
     langHeader.innerHTML = 'Language';
     sourceHeader.innerHTML = 'Source of background';
-    // selectSrc.innerHTML = 'Select source';
     tagHeader.innerHTML = 'Background tag';
     hideShowHeader.innerHTML = 'Hide/show';
     timeHeader.innerHTML = 'Time';
@@ -698,10 +696,8 @@ async function getFlickrToImage() {
     const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=afae3eab341c453ed988c778f764d4b2&tags=${inputTag.value}&extras=url_l&format=json&nojsoncallback=1`;
     const res = await fetch(url);
     const data = await res.json();
-    // console.log(data.photos.photo[0].url_l);
 
     const img = new Image();
-    // img.src = data.photos.photo[0].url_l;
     let imgURL = Object.values(Object.values(Object.values(data)[0])[4][getRandomNum(0, 100)])[9];
     img.src = imgURL;
     img.onload = () => {
@@ -738,7 +734,7 @@ document.addEventListener('click', function(e) {
   const time = document.querySelector('.time');
   const date = document.querySelector('.date');
   const greeting = document.querySelector('.greeting-container');
-  const quoteContainer = document.querySelector('.footer');
+  const quoteContainer = document.querySelector('.footer-one');
   const weather = document.querySelector('.weather');
   const player = document.querySelector('.player');
   const todo = document.querySelector('.todo-container');
