@@ -1,7 +1,6 @@
 // Time
 
 const lang = document.querySelector('.language');
-// lang.innerHTML = 'EN';
 
 function showTime() {
     const time = document.querySelector('.time');
@@ -9,8 +8,6 @@ function showTime() {
     const currentTime = date.toLocaleTimeString();
     
     time.textContent = currentTime;
-    // showDate();
-    // showGreeting();
 
     setTimeout(showTime, 1000);
   }
@@ -96,18 +93,51 @@ function showGreeting(lang = 'EN') {
 
 function setLocalStorage() {
     let name = document.querySelector('.name');
-    // let todoItems = document.querySelectorAll('.tasks-item');
+    let todoItems = document.querySelectorAll('.tasks-item');
+    let todoArray = [];
+
+    if(todoItems.length !== 0) {
+        for(let i = 0; i < todoItems.length; i++) {
+            if(!todoItems.item(i).classList.contains('complete')) {
+                todoArray.push(todoItems.item(i).textContent); 
+            }
+        }
+    }
+
+    todoListStorage = todoArray.join("^");
 
     localStorage.setItem('name', name.value);
     localStorage.setItem('city', city.value);
     localStorage.setItem('lang', lang.innerHTML);
-
+    localStorage.setItem('todo', todoListStorage);
 }
 
   window.addEventListener('beforeunload', setLocalStorage);
 
 function getLocalStorage() {
     let name = document.querySelector('.name');
+
+    if(localStorage.getItem('todo')) {
+        let todoArray = localStorage.getItem('todo').split("^");
+
+        for(let i = 0; i < todoArray.length; i++) {
+            let li = document.createElement('li');
+            let div = document.createElement('div');
+            let cross = document.createElement('img');
+            cross.src = './assets/svg/iconsCancel.svg';
+            cross.classList.add('cross');
+            div.classList.add('task-div');
+            li.appendChild(div);
+            li.appendChild(cross);
+            li.classList.add('tasks-item');
+            li.classList.add('incomplete');
+            div.textContent = todoArray[i];
+            if(div.textContent !== '') {
+                tasksList.appendChild(li);
+            }
+            taskInput.value = '';
+        }
+    }
 
     if(localStorage.getItem('name')) {
       name.value = localStorage.getItem('name');
@@ -260,7 +290,6 @@ async function getWeather(language = lang.innerHTML) {
     }
 
     catch (error) {
-        // console.log(error);
         temperature.textContent = '';
         weatherDescription.textContent = '';
         wind.textContent = '';
