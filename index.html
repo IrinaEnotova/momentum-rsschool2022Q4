@@ -1,204 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="assets/favicon.ico" rel="shortcut icon" />
-  <link rel="stylesheet" href="css/owfont-regular.css" />
-  <link rel="stylesheet" href="css/style.css" />
-  <title>momentum</title>
-</head>
-<body>
-  <header class="header">
-    <div class="player">
-      <audio src="./assets/sounds/BadLiar.mp3" id="song"></audio>
-      <div class="player-controls">
-        <button class="play-prev player-icon"></button>
-        <button class="play player-icon"></button>
-        <button class="play-next player-icon"></button>
-      </div>
-      <div class="advancedPlayer">
-        <div class="songName">
-          <div class="song-artist">Imagine Dragons</div>
-          <div class="song-title">Bad Liar</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="assets/favicon.ico" rel="shortcut icon" />
+
+    <title>momentum</title>
+
+    <link rel="stylesheet" href="./assets/css/owfont-regular.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="player">
+        <audio src="./assets/sounds/BadLiar.mp3" id="song"></audio>
+        <div class="player-controls">
+          <button class="play-prev player-icon"></button>
+          <button class="play player-icon"></button>
+          <button class="play-next player-icon"></button>
         </div>
-        <input 
-            type="range" 
-            id="progress-bar" 
-            min="0" 
-            max="" 
-            value="0" 
-            onchange="changeProgressBar()"
-        />
-        <div class="timeOfSong">
-          <button class="volume-button"></button>
-          <input 
-          id="range" 
-          min="0" 
-          max="1"
-          step = "0.1" 
-          value="1" 
-          type="range">
-          <div class="currentTime">0:00 </div>
-          <div class="divider"> / </div>
-          <div class="durationTime">4:21</div>
+        <div class="advancedPlayer">
+          <div class="songName">
+            <div class="song-artist">Imagine Dragons</div>
+            <div class="song-title">Bad Liar</div>
+          </div>
+          <input type="range" id="progress-bar" min="0" max="" value="0" onchange="changeProgressBar()" />
+          <div class="timeOfSong">
+            <button class="volume-button"></button>
+            <input class="range" id="range" min="0" max="1" step="0.1" value="1" type="range" />
+            <div class="currentTime">0:00</div>
+            <div class="divider">/</div>
+            <div class="durationTime">4:21</div>
+          </div>
         </div>
+        <ul class="play-list"></ul>
       </div>
-      <ul class="play-list"></ul>
-    </div>
-    <div class="weather">
-      <input type="text" class="city">
-      <i class="weather-icon owf"></i>
-      <div class="weather-error"></div>
-      <div class="description-container">
-        <span class="temperature"></span>
-        <span class="weather-description"></span>
+      <div class="weather">
+        <input type="text" class="city" />
+        <i class="weather-icon owf"></i>
+        <div class="weather-error"></div>
+        <div class="description-container">
+          <span class="temperature"></span>
+          <span class="weather-description"></span>
+        </div>
+        <div class="wind"></div>
+        <div class="humidity"></div>
       </div>
-      <div class="wind"></div>
-      <div class="humidity"></div>
-    </div>
-  </header>
-  <main class="main">
-    <div class="slider-icons">
-      <button class="slide-prev slider-icon"></button>
-      <button class="slide-next slider-icon"></button>
-    </div>
-    <time class="time"></time>
-    <date class="date"></date>
-    <div class="greeting-container">
-      <span class="greeting"></span>
-      <input type="text" class="name" placeholder="Name" />
-    </div>
-  </main>
-  <footer class="footer">
-    <div class="footer-one">
-      <button class="change-quote"></button>
-      <div>
-        <div class="quote"></div>
-        <div class="author"></div>
+    </header>
+    <main class="main">
+      <div class="slider-icons">
+        <button class="slide-prev slider-icon"></button>
+        <button class="slide-next slider-icon"></button>
       </div>
-    </div>
-    
-    <div class="footer-two">
-      <div class="container-settings">
-        <div class="main-settings">
-          <!-- <div class="language">EN</div>
-          <div> -->
-            <img id="settings-btn" src="./assets/img/settings.png" alt="Settings">
-          <!-- </div> -->
+      <time class="time"></time>
+      <date class="date"></date>
+      <div class="greeting-container">
+        <span class="greeting"></span>
+        <input type="text" class="name" placeholder="Name" />
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer-one">
+        <button class="change-quote"></button>
+        <div>
+          <div class="quote"></div>
+          <div class="author"></div>
         </div>
       </div>
-      <div class="windowSettings">
-        <div class="set-header">
-          SETTINGS
+
+      <div class="footer-two">
+        <div class="container-settings">
+          <div class="main-settings">
+            <img class="settings-btn" src="./assets/img/settings.png" alt="Settings" />
+          </div>
         </div>
-        <ul class = "set-list">
-          <li class="set-item lang-box">
-            <div class="lang-header">Language</div>
-            <div class="language lang-set">EN</div>
-          </li>
-          <li class="set-item background-box">
-            <div class="source-header">Source of background</div>
-            <div class="sources-bg">
-              <div class="source-item github">GitHub</div>
-              <div class="source-item unsplash">Unsplash API</div>
-              <div class="source-item flickr">Flickr API</div>
-              <!-- <option class="select-src" disabled selected>Select source</option>
-              <option value="GitHub">GitHub</option>
-              <option value="Unsplash">Unsplash API</option> 
-              <option value="Flickr">Flickr API</option> -->
+        <div class="windowSettings">
+          <div class="set-header">SETTINGS</div>
+          <ul class="set-list">
+            <li class="set-item background-box">
+              <div class="source-header">Source of background</div>
+              <div class="sources-bg">
+                <div class="source-item github">GitHub</div>
+                <div class="source-item unsplash">Unsplash API</div>
+              </div>
+            </li>
+            <li class="set-item background-tag">
+              <div class="tag-header">Background tag</div>
+              <input class="input-tag" type="text" />
+            </li>
+            <li class="set-item hide-box">
+              <div class="hide-show-header">Hide/show block</div>
+              <ul class="hs-list">
+                <li class="hs-item">
+                  <label>
+                    <input class="switch-time" type="checkbox" checked />
+                    <span class="time-header">Time</span>
+                  </label>
+                </li>
+                <li class="hs-item">
+                  <label>
+                    <input class="switch-date" type="checkbox" checked />
+                    <span class="date-header">Date</span>
+                  </label>
+                </li>
+                <li class="hs-item">
+                  <label>
+                    <input class="switch-greeting" type="checkbox" checked />
+                    <span class="greeting-header">Greeting</span>
+                  </label>
+                </li>
+                <li class="hs-item">
+                  <label>
+                    <input class="switch-quote" type="checkbox" checked />
+                    <span class="quote-header">Quote</span>
+                  </label>
+                </li>
+                <li class="hs-item">
+                  <label>
+                    <input class="switch-weather" type="checkbox" checked />
+                    <span class="weather-header">Weather</span>
+                  </label>
+                </li>
+                <li class="hs-item">
+                  <label>
+                    <input class="switch-player" type="checkbox" checked />
+                    <span class="player-header">AudioPlayer</span>
+                  </label>
+                </li>
+                <li class="hs-item">
+                  <label>
+                    <input class="switch-todo" type="checkbox" checked />
+                    <span class="todo-header">Todo</span>
+                  </label>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="links">
+          <a class="link-rsschool" href="https://rs.school/js/" target="_blank">
+            <img class="rs-logo" src="./assets/svg/logo-rs.svg" alt="Logo RS School" />
+          </a>
+          <a class="link-github" href="https://github.com/IrinaEnotova" target="_blank">
+            <img src="./assets/img/icons8-github-50.png" alt="My GitHub" />
+          </a>
+        </div>
+
+        <div class="todo-container">
+          <div class="todo-btn">Todo</div>
+          <div class="todo-popup">
+            <div class="todo-heading">TODO LIST</div>
+            <div class="type-box">
+              <input class="type-text" type="text" />
+              <div class="add-btn">Add</div>
             </div>
-          </li>
-          <li class="set-item background-tag">
-            <div class="tag-header">
-              Background tag
+            <div class="tasks-box">
+              <ul class="tasks-list"></ul>
             </div>
-              <input class="input-tag" type="text">
-          </li>
-          <li class="set-item hide-box">
-            <div class="hide-show-header">Hide/show</div>
-            <ul class="hs-list">
-              <li class="hs-item">
-                <label>
-                  <input class="switch-time" type="checkbox" checked>
-                  <span class="time-header">Time</span>
-                </label>
-              </li>
-              <li class="hs-item">
-                <label>
-                  <input class="switch-date" type="checkbox" checked>
-                  <span class="date-header">Date</span>
-                </label>
-              </li>
-              <li class="hs-item">
-                <label>
-                  <input class="switch-greeting" type="checkbox" checked>
-                  <span class="greeting-header">Greeting</span>
-                </label>
-              </li>
-              <li class="hs-item">
-                <label>
-                  <input class="switch-quote" type="checkbox" checked>
-                  <span class="quote-header">Quote</span>
-                </label>
-              </li>
-              <li class="hs-item">
-                <label>
-                  <input class="switch-weather" type="checkbox" checked>
-                  <span class="weather-header">Weather</span>
-                </label>
-              </li>
-              <li class="hs-item">
-                <label>
-                  <input class="switch-player" type="checkbox" checked>
-                  <span class="player-header">AudioPlayer</span>
-                </label>
-              </li>
-              <li class="hs-item">
-                <label>
-                  <input class="switch-todo" type="checkbox" checked>
-                  <span class="todo-header">Todo</span>
-                </label>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-  
-      <div class="links">
-        <a class="link-rsschool" href="https://rs.school/js/" target="_blank">
-          <img class="rs-logo" src="./assets/svg/logo-rs.svg" alt="Logo RS School">
-        </a>
-        <a class="link-github" href="https://github.com/IrinaEnotova" target="_blank">
-          <img src="./assets/img/icons8-github-50.png" alt="My GitHub">
-        </a>
-      </div>
-  
-      <div class="todo-container">
-        <div class="todo-btn">Todo</div>
-        <div class="todo-popup">
-          <div class="todo-heading">
-            TODO LIST
-          </div>
-          <div class="type-box">
-            <input class="type-text" type="text">
-            <div class="add-btn">Add</div>
-          </div>
-          <div class="tasks-box">
-            <ul class="tasks-list"></ul>
-          </div>
-          <div class="type-of-tasks">
-            <div class="all-tasks">All</div>
-            <div class="complete-tasks">Complete</div>
-            <div class="incomplete-tasks">Incomplete</div>
+            <div class="type-of-tasks">
+              <div class="all-tasks">All</div>
+              <div class="complete-tasks">Complete</div>
+              <div class="incomplete-tasks">Incomplete</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-       
-  </footer>
-  
-  <script src="./assets/js/script.js"></script>
-  <script src="assets/js/info.js"></script>
-</body>
+    </footer>
+
+    <script src="./assets/js/script.js"></script>
+  </body>
 </html>
