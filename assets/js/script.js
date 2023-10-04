@@ -393,6 +393,13 @@ function createTasks() {
   }
 }
 
+function makeActiveBtn(target) {
+  document.querySelectorAll(".todo-filter").forEach((btn) => {
+    btn.classList.remove("active-todo-filter");
+  });
+  target.classList.add("active-todo-filter");
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   let bgNum = getRandomNum(1, 20).toString().padStart(2, "0");
   const city = document.querySelector(".city");
@@ -538,6 +545,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (target.classList.contains("todo-btn")) {
       todoContainer.classList.toggle("todo-active");
+      createTasks();
+    }
+
+    if (target.classList.contains("all-tasks")) {
+      createTasks();
+      makeActiveBtn(target);
+    }
+
+    if (target.classList.contains("complete-tasks")) {
+      createTasks();
+      makeActiveBtn(target);
+      const tasks = document.querySelectorAll(".tasks-item");
+      tasks.forEach((task) => {
+        if (!task.classList.contains("completed-todo")) {
+          task.style.display = "none";
+        }
+      });
+    }
+
+    if (target.classList.contains("incomplete-tasks")) {
+      createTasks();
+      makeActiveBtn(target);
+      const tasks = document.querySelectorAll(".tasks-item");
+      tasks.forEach((task) => {
+        if (task.classList.contains("completed-todo")) {
+          task.style.display = "none";
+        }
+      });
     }
 
     if (target.classList.contains("add-btn")) {
